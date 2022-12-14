@@ -29,6 +29,7 @@
    * @param repeatDirection (default `'h'`) 'h' for horizontal or 'v' for vertical.
    * @param maxPerRow (optional) Maximum panels per row in repeat mode.
    * @param pluginVersion (default `'7'`) Plugin version the panel should be modeled for. This has been tested with the default, '7', and '6.7'.
+   * @param colorScheme (optional) Controls which color mode is applied. The default is `From Threshold (by value)`. But you can also configure for example `Green-Yellow-Red (by value)`
    *
    * @method addTarget(target) Adds a target object.
    * @method addTargets(targets) Adds an array of targets.
@@ -67,6 +68,7 @@
     repeatDirection='h',
     maxPerRow=null,
     pluginVersion='7',
+    colorScheme=null,
   ):: {
 
     type: 'stat',
@@ -123,6 +125,9 @@
           [if decimals != null then 'decimals']: decimals,
           [if displayName != null then 'displayName']: displayName,
           [if noValue != null then 'noValue']: noValue,
+          color: {
+            [if colorScheme != null then 'mode']: colorScheme,
+          },
           thresholds: {
             mode: thresholdsMode,
             steps: [],
